@@ -3,7 +3,7 @@ import './App.css';
 import EmotionTable from './EmotionTable.js';
 import React from 'react';
 import axios from 'axios';
-
+import { Helmet } from 'react-helmet'
 class App extends React.Component {
   state = {innercomp:<textarea rows="4" cols="50" id="textinput"/>,
             mode: "text",
@@ -55,7 +55,7 @@ class App extends React.Component {
       } else if (response.data === "negative"){
         output = <div style={{color:"red",fontSize:20}}>{response.data}</div>
       } else {
-        output = <div style={{color:"orange",fontSize:20}}>{response.data}</div>
+        output = <div style={{color:"yellow",fontSize:20}}>{response.data}</div>
       }
       this.setState({sentimentOutput:output});
     });
@@ -79,8 +79,13 @@ class App extends React.Component {
   
 
   render() {
+    const TITLE = 'Sentiment Analyzer'
     return (  
+      
       <div className="App">
+       <Helmet>
+          <title>{ TITLE }</title>
+        </Helmet>
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
         <br/><br/>
